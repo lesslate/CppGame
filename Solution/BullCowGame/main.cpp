@@ -29,8 +29,12 @@ string GetGuessAndPrintBack()
 int main()
 {
 	PrintIntro();
-	GetGuessAndPrintBack();
-	GetGuessAndPrintBack();
+	constexpr int NUMBER_OF_TURNS = 5;
+	for (int count = 1; count <= NUMBER_OF_TURNS; count++)
+	{
+		GetGuessAndPrintBack();
+		cout << endl;
+	}
 
 
 	return 0;
