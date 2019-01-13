@@ -3,6 +3,19 @@
 
 using namespace std;
 
+void PrintIntro();
+void PlayGame();
+string GetGuess();
+
+int main()
+{
+	PrintIntro();
+
+	PlayGame();
+
+	return 0;
+}
+
 void PrintIntro()
 {
 	constexpr int WORLD_LENGTH = 5;
@@ -14,7 +27,18 @@ void PrintIntro()
 
 }
 
-string GetGuessAndPrintBack()
+void PlayGame()
+{
+	constexpr int NUMBER_OF_TURNS = 5;
+	for (int count = 1; count <= NUMBER_OF_TURNS; count++)
+	{
+		string GUESS = GetGuess();
+		cout << "Your guess was: " << GUESS << endl;
+		cout << endl;
+	}
+}
+
+string GetGuess()
 {
 
 
@@ -22,20 +46,7 @@ string GetGuessAndPrintBack()
 	string GUESS = "";
 	getline(cin, GUESS);
 
-	cout << "Your guess was: " << GUESS << endl;
+	
 	return GUESS;
 }
 
-int main()
-{
-	PrintIntro();
-	constexpr int NUMBER_OF_TURNS = 5;
-	for (int count = 1; count <= NUMBER_OF_TURNS; count++)
-	{
-		GetGuessAndPrintBack();
-		cout << endl;
-	}
-
-
-	return 0;
-}
