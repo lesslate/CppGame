@@ -47,7 +47,11 @@ void PlayGame()
 	for (int32 count = 1; count <= MaxTries; count++)
 	{
 		FText GUESS = GetGuess();
-		std::cout << "Your guess was: " << GUESS << std::endl;
+		FBullCowCount BullCowCount = BCGame.SubmitGuess(GUESS);
+
+		// print bulls cows number
+		std::cout << "Bulls = " << BullCowCount.Bulls;
+		std::cout << ". Cows = " << BullCowCount.Cows << std::endl;
 		std::cout << std::endl;
 	}
 }
