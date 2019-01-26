@@ -10,6 +10,7 @@ void PrintIntro();
 void PlayGame();
 FText GetValidGuess();
 bool AskToPlayAgain();
+void PrintGameSummary();
 
 FBullCowGame BCGame; //instantiate a new game
 
@@ -54,7 +55,12 @@ void PlayGame()
 		std::cout << "Bulls = " << BullCowCount.Bulls;
 		std::cout << ". Cows = " << BullCowCount.Cows << "\n\n";
 	}
+	PrintGameSummary();
+	return;
 }
+
+
+
 
 FText GetValidGuess()
 {
@@ -100,3 +106,14 @@ bool AskToPlayAgain()
 
 }
 
+void PrintGameSummary()
+{
+	if (BCGame.IsGameWon())
+	{
+		std::cout << "Well done - You Win ! \n";
+	}
+	else
+	{
+		std::cout << "Better luck next time!\n";
+	}
+}
