@@ -1,8 +1,12 @@
+#pragma once
+
+
 #include <iostream>
 #include <string>
 #include "FBullCowGame.h"
 
 
+//언리얼 문법화
 using FText = std::string;
 using int32 = int;
 
@@ -20,7 +24,7 @@ int main()
 	do {
 		PrintIntro();
 		PlayGame();
-		AskToPlayAgain();
+		bPlayAgain=AskToPlayAgain();
 	} while (bPlayAgain);
 
 	return 0;
@@ -95,7 +99,8 @@ FText GetValidGuess()
 	} while (Status != EGuessStatus::OK); // keep looping until we get no errors
 	return Guess;
 }
-// TODO summarise game
+
+
 bool AskToPlayAgain()
 {
 	std::cout << "Do you want to play again(Y/N)?";

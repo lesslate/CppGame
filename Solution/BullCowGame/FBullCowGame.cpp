@@ -1,5 +1,9 @@
+#pragma once
+
 #include "FBullCowGame.h"
 #include <map>
+
+//언리얼 문법화
 #define TMap std::map
 
 
@@ -8,8 +12,7 @@ FBullCowGame::FBullCowGame()
 	{Reset();}
 
 
-int32 FBullCowGame::GetMaxTries() const 
-	{return MyMaxTries;}
+
 
 int32 FBullCowGame::GetCurrentTry() const
 	{return MyCurrentTry;}
@@ -21,12 +24,18 @@ bool FBullCowGame::IsGameWon() const
 	{return bGameIsWon;}
 
 
+int32 FBullCowGame::GetMaxTries() const
+{
+	TMap<int32, int32> WordLengthToMaxTries{ {3,4}, {4,7}, {5,10}, {6,16}, {7,20} };
+	return WordLengthToMaxTries[MyHiddenWord.length()];
+}
+
 void FBullCowGame::Reset()
 {
-	constexpr int32 MAX_TRIES = 3;
-	const FString HIDDEN_WORD = "planet";
+	
+	const FString HIDDEN_WORD = "planet"; // 무반복어만 가능
 
-	MyMaxTries = MAX_TRIES;
+	
 	MyHiddenWord = HIDDEN_WORD;
 
 	MyCurrentTry = 1;
@@ -102,16 +111,28 @@ bool FBullCowGame::IsIsogram(FString Word) const
 	return true;
 }
 
+bool FBullCowGame::IsLowercase(FString Word) const
+{
+	for (auto Letter : Word)
+	{
+		if (!islower(Letter))
+		{
+			return false;
+		}
+	}
+	return true;
+}
+
 
 EGuessStatus FBullCowGame::CheckGuessValidity(FString Guess) const
 {
 	if (!IsIsogram(Guess))
 	{
-		return EGuessStatus::Not_Isogram;  //TODO write function
+		return EGuessStatus::Not_Isogram; 
 	}
-	else if (false)
+	else if (!IsLowercase(Guess))
 	{
-		return EGuessStatus::Not_Lowercase;  //TODO write function
+		return EGuessStatus::Not_Lowercase;  
 	}
 	else if (Guess.length() != GetHiddenWordLength())
 	{
